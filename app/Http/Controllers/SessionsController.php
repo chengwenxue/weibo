@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use Auth;
 class SessionsController extends Controller
 {
@@ -26,5 +27,11 @@ class SessionsController extends Controller
             return redirect()->back()->withInput();
     	}
     	return ;
+    }
+
+    public function destroy(){
+    	Auth::logout();
+    	session()->flash('success','您已成功推出');
+    	return redirect('login');
     }
 }
